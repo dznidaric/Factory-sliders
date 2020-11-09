@@ -1,73 +1,121 @@
 $(document).ready(function () {
 
-    let lista = $('.slider-list'),
-        items = lista.find('li'),
-        len = items.length,
-        current = 1,  /* the item we're currently looking */
+    let gornjaLista = $('.slider-list-g');
+    let donjaLista = $('.slider-list-d');
 
-        first = items.filter(':first'),
-        last = items.filter(':last');
+    let n = 0;
+    let k = 5;
 
+    $('#arrow-blue-right').on('click', function () {
 
-    console.log(lista, items);
+        if (gornjaLista.is(':not(:animated)')) {
+            let gornjaLista = $('.slider-list-g'),
+                items = gornjaLista.find('li'),
+                last = items.filter(':last');
+
+            function pomicanjedesnoG() {
+                let trenutnaSlikaG = $("#" + n);
+                last.after(trenutnaSlikaG.clone(true));
+                n += 1;
+
+                let width = trenutnaSlikaG.width();
+                gornjaLista.animate({
+                    right: "-=" + width
+                }, 850);
+
+            }
+            if (n < 5) {
+                pomicanjedesnoG();
+            }
+            else {
+                n = 0;
+                pomicanjedesnoG();
+            }
+
+        }
+        if (donjaLista.is(':not(:animated)')) {
+            let donjaLista = $('.slider-list-d'),
+                items = donjaLista.find('li'),
+                last = items.filter(':last');
+
+            function pomicanjedesnoD() {
+                let trenutnaSlikaD = $("#" + k);
+                last.after(trenutnaSlikaD.clone(true));
+                k += 1;
+
+                let width = trenutnaSlikaD.width();
+                console.log(width);
+                donjaLista.animate({
+                    right: "-=" + width
+                }, 850);
+
+            }
+            if (k < 9) {
+                pomicanjedesnoD();
+            }
+            else {
+                k = 5;
+                pomicanjedesnoD();
+            }
+
+        }
+
+    });
     
+    $('#arrow-gray-left').on('click', function () {
+        if (gornjaLista.is(':not(:animated)')) {
+            let gornjaLista = $('.slider-list-g'),
+                items = gornjaLista.find('li'),
+                first = items.filter(':last');
+            console.log(items, first);
 
-    /* 1. Cloning first and last item */
-    //first.before(last.clone(true));
-    let n = 1;
+            function pomicanjedesnoG() {
+                let trenutnaSlikaG = $("#" + n);
+                first.before(trenutnaSlikaG.clone(true));
+                n -= 1;
 
-    last.after(first.clone(true));
-    first.addClass("aktivan");
+                let width = trenutnaSlikaG.width();
+                gornjaLista.animate({
+                    right: "+=" + width
+                }, 850);
 
-    /* 2. Set button handlers */
-    triggers = $('#arrow-blue-right').on('click', function () {
-        let cycle, delta;
+            }
+            if (n > 0) {
+                pomicanjedesnoG();
+            }
+            else {
+                n = 4;
+                pomicanjedesnoG();
+            }
 
-        if (lista.is(':not(:animated)')) {
+        }
+        if (donjaLista.is(':not(:animated)')) {
+            let donjaLista = $('.slider-list-d'),
+                items = donjaLista.find('li'),
+                first = items.filter(':last');
 
-            
-            let trenutnaslika = $(".aktivan");
-            last.after(trenutnaslika.clone(true));
+            console.log(items, first);
 
-            sljedeci = items[n];
-            var sl = (items[0].nextElementSibling.toArray);
-            console.log(sl);
-            
-            console.log(trenutnaslika,items[n]);
-            n += 1;
+            function pomicanjelijevoD() {
+                let trenutnaSlikaD = $("#" + k);
+                first.before(trenutnaSlikaD.clone(true));
+                k -= 1;
 
-            let img = trenutnaslika;
-            console.log(img);
-            let width = img.width();
-            console.log(width);
+                let width = trenutnaSlikaD.width();
+                console.log(width);
+                donjaLista.animate({
+                    right: "+=" + width
+                }, 850);
 
-            trenutni = $(".aktivan").removeClass("aktivan");
-            //(sljedeci).classList.addClass("aktivan");
+            }
+            if (k > 4) {
+                pomicanjelijevoD();
+            }
+            else {
+                k = 9;
+                pomicanjelijevoD();
+            }
 
-
-            cycle = false;
-            delta = (this.id === "prev") ? -1 : 1;
-            console.log(delta);
-            /* in the example buttons have id "prev" or "next" */
-
-            lista.animate({ right: "+=" + (-100 * delta) }, function () {
-
-                current += delta;
-
-                /** 
-                 * we're cycling the slider when the the value of "current" 
-                 * variable (after increment/decrement) is 0 or when it exceeds
-                 * the initial lista length
-                 */
-                cycle = (current === 0 || current > len);
-
-                if (cycle) {
-                    /* we switched from image 1 to 4-cloned or 
-                       from image 4 to 1-cloned */
-                    current = (current === 0) ? len : 1;
-                    lista.css({ right: -100 * current });
-                }
-            });
         }
 
     });

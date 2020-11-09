@@ -28,11 +28,13 @@ main{
     direction: rtl;
     flex-wrap: nowrap;
     overflow: hidden;
+    padding-right: 0;
 }
 #coldown{
     direction: rtl;
     flex-wrap: nowrap;
     overflow: hidden;
+    padding-right: 0;
 }
 
 ul {
@@ -43,6 +45,7 @@ ul, li {
     list-style: none;
     display: inline;
     position: relative;
+    padding-right: 0;
 }
 
 
@@ -84,6 +87,3 @@ img{
     border-color: rgb(22, 78, 141);
 }
 
-#text{
-    padding-left: 0;
-}

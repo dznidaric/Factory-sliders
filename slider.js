@@ -5,49 +5,61 @@ $(document).ready(function () {
 
     let n = 0;
     let k = 5;
+    let items = gornjaLista.find('li'),
+        last = items.filter(':last');
+
+    last.after(items.clone(true));
 
     $('#arrow-blue-right').on('click', function () {
 
         if (gornjaLista.is(':not(:animated)')) {
-            let gornjaLista = $('.slider-list-g'),
-                items = gornjaLista.find('li'),
-                last = items.filter(':last');
 
-            function pomicanjedesnoG() {
-                let trenutnaSlikaG = $("#" + n);
-                last.after(trenutnaSlikaG.clone(true));
-                n += 1;
+            slj = $(items[0].nextElementSibling);
+            console.log(slj);
+            //slj.addClass("aktivan");
+            gornjaLista = $('.slider-list-g');
+            items = gornjaLista.find('li');
+            last = items.filter(':last');
 
-                let width = trenutnaSlikaG.width();
-                gornjaLista.animate({
-                    right: "-=" + width
-                }, 850);
+            let trenutnaSlikaG = $("#" + n);
+            n = (n + 1) % 5;
+            console.log(n);
 
-            }
-            if (n < 5) {
-                pomicanjedesnoG();
-            }
-            else {
-                n = 0;
-                pomicanjedesnoG();
-            }
+            last.after(trenutnaSlikaG.clone(true));
+
+            let width = trenutnaSlikaG.width();
+
+            gornjaLista.animate({
+                right: "-=" + width
+            }, 850);
+            setTimeout(
+                function () {
+                    items.slice(0, 1).remove();
+                    gornjaLista.removeAttr("style");
+                }, 900);
+
 
         }
         if (donjaLista.is(':not(:animated)')) {
-            let donjaLista = $('.slider-list-d'),
-                items = donjaLista.find('li'),
-                last = items.filter(':last');
+            donjaLista = $('.slider-list-d');
+            let donjaListaStvari = donjaLista.find('li');
+            let zadnji = donjaListaStvari.filter(':last');
 
             function pomicanjedesnoD() {
                 let trenutnaSlikaD = $("#" + k);
-                last.after(trenutnaSlikaD.clone(true));
+                zadnji.after(trenutnaSlikaD.clone(true));
                 k += 1;
 
                 let width = trenutnaSlikaD.width();
-                console.log(width);
+
                 donjaLista.animate({
                     right: "-=" + width
                 }, 850);
+                setTimeout(
+                    function () {
+                        donjaListaStvari.slice(0, 1).remove();
+                        donjaLista.removeAttr("style");
+                    }, 900);
 
             }
             if (k < 9) {
@@ -61,7 +73,7 @@ $(document).ready(function () {
         }
 
     });
-    
+
     $('#arrow-gray-left').on('click', function () {
         if (gornjaLista.is(':not(:animated)')) {
             let gornjaLista = $('.slider-list-g'),
@@ -72,21 +84,23 @@ $(document).ready(function () {
             function pomicanjedesnoG() {
                 let trenutnaSlikaG = $("#" + n);
                 first.before(trenutnaSlikaG.clone(true));
-                n -= 1;
+                //n -= 1;
+                n = (n - 1) % 5;
 
                 let width = trenutnaSlikaG.width();
                 gornjaLista.animate({
                     right: "+=" + width
                 }, 850);
-
             }
+            pomicanjedesnoG();
+            /*
             if (n > 0) {
                 pomicanjedesnoG();
             }
             else {
                 n = 4;
                 pomicanjedesnoG();
-            }
+            }*/
 
         }
         if (donjaLista.is(':not(:animated)')) {

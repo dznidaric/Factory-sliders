@@ -3,27 +3,33 @@ $(document).ready(function () {
     let gornjaLista = $('.slider-list-g');
     let donjaLista = $('.slider-list-d');
 
-    let n = 0;
-    let k = 5;
     let items = gornjaLista.find('li'),
         last = items.filter(':last');
 
+    let donjaListaStvari = donjaLista.find('li'),
+        zadnji = donjaListaStvari.filter(':last');
+
     last.after(items.clone(true));
+    zadnji.after(donjaListaStvari.clone(true));
+
+    $(items[0]).addClass("aktivan");
+    $(donjaListaStvari[0]).addClass("aktivan");
 
     $('#arrow-blue-right').on('click', function () {
 
         if (gornjaLista.is(':not(:animated)')) {
 
-            slj = $(items[0].nextElementSibling);
-            console.log(slj);
-            //slj.addClass("aktivan");
             gornjaLista = $('.slider-list-g');
             items = gornjaLista.find('li');
             last = items.filter(':last');
 
-            let trenutnaSlikaG = $("#" + n);
-            n = (n + 1) % 5;
-            console.log(n);
+            let trenutnaSlikaG = $(".slider-list-g .aktivan");
+
+            trenutnaSlikaG.removeClass();
+
+            let sljedeci = $(items[1]);
+            sljedeci.addClass("aktivan");
+            console.log(sljedeci);
 
             last.after(trenutnaSlikaG.clone(true));
 
@@ -38,98 +44,84 @@ $(document).ready(function () {
                     gornjaLista.removeAttr("style");
                 }, 900);
 
-
         }
         if (donjaLista.is(':not(:animated)')) {
+
             donjaLista = $('.slider-list-d');
-            let donjaListaStvari = donjaLista.find('li');
-            let zadnji = donjaListaStvari.filter(':last');
+            donjaListaStvari = donjaLista.find('li');
+            zadnji = donjaListaStvari.filter(':last');
 
-            function pomicanjedesnoD() {
-                let trenutnaSlikaD = $("#" + k);
-                zadnji.after(trenutnaSlikaD.clone(true));
-                k += 1;
+            let trenutnaSlikaD = $(".slider-list-d .aktivan");
 
-                let width = trenutnaSlikaD.width();
+            trenutnaSlikaD.removeClass();
 
-                donjaLista.animate({
-                    right: "-=" + width
-                }, 850);
-                setTimeout(
-                    function () {
-                        donjaListaStvari.slice(0, 1).remove();
-                        donjaLista.removeAttr("style");
-                    }, 900);
+            zadnji.after(trenutnaSlikaD.clone(true));
 
-            }
-            if (k < 9) {
-                pomicanjedesnoD();
-            }
-            else {
-                k = 5;
-                pomicanjedesnoD();
-            }
+            let slj = $(donjaListaStvari[1]);
+            slj.addClass("aktivan");
 
+            let sirina = trenutnaSlikaD.width();
+
+            donjaLista.animate({
+                right: "-=" + sirina
+            }, 850);
+
+            setTimeout(
+                function () {
+                    donjaListaStvari.slice(0, 1).remove();
+                    donjaLista.removeAttr("style");
+                }, 900);
         }
 
     });
 
     $('#arrow-gray-left').on('click', function () {
         if (gornjaLista.is(':not(:animated)')) {
-            let gornjaLista = $('.slider-list-g'),
-                items = gornjaLista.find('li'),
-                first = items.filter(':last');
-            console.log(items, first);
 
-            function pomicanjedesnoG() {
-                let trenutnaSlikaG = $("#" + n);
-                first.before(trenutnaSlikaG.clone(true));
-                //n -= 1;
-                n = (n - 1) % 5;
+            gornjaLista = $('.slider-list-g');
+            items = gornjaLista.find('li');
+            last = items.filter(':last');
 
-                let width = trenutnaSlikaG.width();
-                gornjaLista.animate({
-                    right: "+=" + width
-                }, 850);
-            }
-            pomicanjedesnoG();
-            /*
-            if (n > 0) {
-                pomicanjedesnoG();
-            }
-            else {
-                n = 4;
-                pomicanjedesnoG();
-            }*/
+            trenutnaSlikaG = $(".slider-list-g .aktivan");
+
+            last.addClass("aktivan");
+            trenutnaSlikaG.before(last.clone(true));
+            trenutnaSlikaG.removeClass();
+
+
+            s = last.width();
+
+            gornjaLista.attr('style', 'right:' + (-s - 4) + "px");
+
+            last.remove();
+
+            gornjaLista.animate({
+                right: "+=" + (s + 4)
+            }, 850);
 
         }
         if (donjaLista.is(':not(:animated)')) {
-            let donjaLista = $('.slider-list-d'),
-                items = donjaLista.find('li'),
-                first = items.filter(':last');
 
-            console.log(items, first);
+            donjaLista = $('.slider-list-d');
+            let stvari = donjaLista.find('li');
+            zadnji = stvari.filter(':last');
 
-            function pomicanjelijevoD() {
-                let trenutnaSlikaD = $("#" + k);
-                first.before(trenutnaSlikaD.clone(true));
-                k -= 1;
+            trenutnaSlikaD = $(".slider-list-d .aktivan");
 
-                let width = trenutnaSlikaD.width();
-                console.log(width);
-                donjaLista.animate({
-                    right: "+=" + width
-                }, 850);
+            zadnji.addClass("aktivan");
+            trenutnaSlikaD.before(zadnji.clone(true));
+            trenutnaSlikaD.removeClass();
 
-            }
-            if (k > 4) {
-                pomicanjelijevoD();
-            }
-            else {
-                k = 9;
-                pomicanjelijevoD();
-            }
+            sirina = zadnji.width();
+            console.log(sirina);
 
+            donjaLista.attr('style', 'right:' + (-sirina - 4) + "px");
+
+            zadnji.remove();
+
+            donjaLista.animate({
+                right: "+=" + (sirina + 4)
+            }, 850);
         }
 
     });

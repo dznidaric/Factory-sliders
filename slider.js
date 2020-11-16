@@ -29,7 +29,6 @@ $(document).ready(function () {
 
             let sljedeci = $(items[1]);
             sljedeci.addClass("aktivan");
-            console.log(sljedeci);
 
             last.after(trenutnaSlikaG.clone(true));
 
@@ -113,7 +112,6 @@ $(document).ready(function () {
             trenutnaSlikaD.removeClass();
 
             sirina = zadnji.width();
-            console.log(sirina);
 
             donjaLista.attr('style', 'right:' + (-sirina - 4) + "px");
 

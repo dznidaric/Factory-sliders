@@ -5,35 +5,46 @@
     <title>Slider</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="Mnlza2dieENxTBkHVC8yAVkjPiwtPSoScT1FLSs1SBt7FTpSShdLew==" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <header>
-        <h1>Factory Slider</h1>
-    </header>
+    <div class="row">
+        <div class="col-4">
+            <header>
+            </header>
+        </div>
+        <div class="col">
+            <header>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <h1>Factory Slider</h1>
+                </div>
+            </header>
+        </div>
+    </div>
+
+
     <main>
         <div class="row">
             <div class="col-8">
                 <div class="row">
                     <div class="col" id="colup">
                         <ul class="slider-list-g">
-                            <li id="0">
+                            <li>
                                 <img src="/multimedija/slider-image-5.jpg" class="m-2" alt="Surfing">
                             </li>
-                            <li id="1">
+                            <li>
                                 <img src="/multimedija/slider-image-8.jpg" class="m-2" alt="Wave">
                             </li>
-                            <li id="2">
+                            <li>
                                 <img src="/multimedija/slider-image-9.jpg" class="m-2" alt="Penguins">
                             </li>
-                            <li id="3">
+                            <li>
                                 <img src="/multimedija/slider-image-6.jpg" class="m-2" alt="Girl">
                             </li>
-                            <li id="4">
+                            <li>
                                 <img src="/multimedija/slider-image-7.jpg" class="m-2" alt="Beach">
                             </li>
                         </ul>
@@ -42,16 +53,16 @@
                 <div class="row">
                     <div class="col" id="coldown">
                         <ul class="slider-list-d">
-                            <li id="0">
+                            <li>
                                 <img src="/multimedija/slider-image-3.jpg" class="m-2" alt="Sunset">
                             </li>
-                            <li id="1">
+                            <li>
                                 <img src="/multimedija/slider-image-2.jpg" class="m-2" alt="lake side">
                             </li>
-                            <li id="2">
+                            <li>
                                 <img src="/multimedija/slider-image-1.jpg" class="m-2" alt="Rocks">
                             </li>
-                            <li id="3">
+                            <li>
                                 <img src="/multimedija/slider-image-4.jpg" class="m-2" alt="Rocks">
                             </li>
                         </ul>
@@ -66,7 +77,7 @@
                             <li>
                                 <img src="/multimedija/arrow-blue-right.png" class="m-2" id="arrow-blue-right">
                             </li>
-                        </ul>
+                            </ul>
                     </div>
 
                 </div>
@@ -82,13 +93,16 @@
         </div>
     </main>
 
-    <footer class="page-footer font-small blue">
-        <div class="footer-copyright text-center py-3">© 2020 Copyright:
-            <a href="mailto:znidaric.domagoj@gmail.com">znidaric.domagoj@gmail.com</a>
+    <footer>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col">
+                <p>Skup drugih elemenata na stranici</p>
+            </div>
         </div>
     </footer>
 
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
     <script src="/slider.js" type="text/javascript"></script>
 </body>

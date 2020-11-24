@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html{
     font-family: 'Courier New', Courier, monospace;
 }
@@ -6,23 +11,30 @@ h2{
     color:  rgb(22, 78, 141);
     font-weight: 700;
 }
-p{
+#text p{
     font-weight: 400;
     color: grey;
 }
 
+
 header{
-    background-color: #003da6; 
-    padding: 2.5rem 1rem;
-    text-align: center;
-    font-size: 2rem;
+    background-color: #003da6;
+    padding: 20px 13px;
+    text-align: left;
+    font-size: 1rem;
+    min-height: 100px;
     color: #fff;
     margin-bottom: 7rem;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 main{
     margin: auto;
     width: 95%;
+}
+.col-8{
+    padding-left: 0px!important;
 }
 #colup{
     direction: rtl;
@@ -52,7 +64,17 @@ ul, li {
 footer{
     background-color: #003da6;
     color: #fff;
-    margin-top: 9rem;
+    padding: 20px 13px;
+    text-align: left;
+    min-height: 100px;
+    margin-top: 7rem;
+    line-height: 60px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+footer p{
+    font-size: 1.5rem;
+    margin-bottom: 0;
 }
 
 img{
@@ -63,8 +85,7 @@ img{
 }
 
 #arrows{
-    direction: rtl;
-    padding: 0;
+    padding-left: 8px;
 }
 
 #arrows >ol >li > img{

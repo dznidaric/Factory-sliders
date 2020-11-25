@@ -1,124 +1,124 @@
 $(document).ready(function () {
 
-    let gornjaLista = $('.slider-list-g');
-    let donjaLista = $('.slider-list-d');
+    let upperList = $('.slider-list-g');
+    let lowerList = $('.slider-list-d');
 
-    let items = gornjaLista.find('li'),
-        last = items.filter(':last');
+    let items = upperList.find('li'),
+        lastUP = items.filter(':last');
 
-    let donjaListaStvari = donjaLista.find('li'),
-        zadnji = donjaListaStvari.filter(':last');
+    let lowerList_Items = lowerList.find('li'),
+        lastDOWN = lowerList_Items.filter(':last');
 
-    last.after(items.clone(true));
-    zadnji.after(donjaListaStvari.clone(true));
+    lastUP.after(items.clone(true));
+    lastDOWN.after(lowerList_Items.clone(true));
 
     $(items[0]).addClass("aktivan");
-    $(donjaListaStvari[0]).addClass("aktivan");
+    $(lowerList_Items[0]).addClass("aktivan");
 
     $('#arrow-blue-right').on('click', function () {
 
-        if (gornjaLista.is(':not(:animated)')) {
+        if (upperList.is(':not(:animated)')) {
 
-            gornjaLista = $('.slider-list-g');
-            items = gornjaLista.find('li');
-            last = items.filter(':last');
+            upperList = $('.slider-list-g');
+            items = upperList.find('li');
+            lastUP = items.filter(':last');
 
-            let trenutnaSlikaG = $(".slider-list-g .aktivan");
+            let currentUP = $(".slider-list-g .aktivan");
 
-            trenutnaSlikaG.removeClass();
+            currentUP.removeClass();
 
-            let sljedeci = $(items[1]);
-            sljedeci.addClass("aktivan");
+            let next = $(items[1]);
+            next.addClass("aktivan");
 
-            last.after(trenutnaSlikaG.clone(true));
+            lastUP.after(currentUP.clone(true));
 
-            let width = trenutnaSlikaG.width();
+            let widthUP = currentUP.width();
 
-            gornjaLista.animate({
-                right: "-=" + width
+            upperList.animate({
+                right: "-=" + widthUP
             }, 850);
             setTimeout(
                 function () {
                     items.slice(0, 1).remove();
-                    gornjaLista.removeAttr("style");
+                    upperList.removeAttr("style");
                 }, 900);
 
         }
-        if (donjaLista.is(':not(:animated)')) {
+        if (lowerList.is(':not(:animated)')) {
 
-            donjaLista = $('.slider-list-d');
-            donjaListaStvari = donjaLista.find('li');
-            zadnji = donjaListaStvari.filter(':last');
+            lowerList = $('.slider-list-d');
+            lowerList_Items = lowerList.find('li');
+            lastDOWN = lowerList_Items.filter(':last');
 
-            let trenutnaSlikaD = $(".slider-list-d .aktivan");
+            let currentDOWN = $(".slider-list-d .aktivan");
 
-            trenutnaSlikaD.removeClass();
+            currentDOWN.removeClass();
 
-            zadnji.after(trenutnaSlikaD.clone(true));
+            lastDOWN.after(currentDOWN.clone(true));
 
-            let slj = $(donjaListaStvari[1]);
+            let slj = $(lowerList_Items[1]);
             slj.addClass("aktivan");
 
-            let sirina = trenutnaSlikaD.width();
+            let widthDOWN = currentDOWN.width();
 
-            donjaLista.animate({
-                right: "-=" + sirina
+            lowerList.animate({
+                right: "-=" + widthDOWN
             }, 850);
 
             setTimeout(
                 function () {
-                    donjaListaStvari.slice(0, 1).remove();
-                    donjaLista.removeAttr("style");
+                    lowerList_Items.slice(0, 1).remove();
+                    lowerList.removeAttr("style");
                 }, 900);
         }
 
     });
 
     $('#arrow-gray-left').on('click', function () {
-        if (gornjaLista.is(':not(:animated)')) {
+        if (upperList.is(':not(:animated)')) {
 
-            gornjaLista = $('.slider-list-g');
-            items = gornjaLista.find('li');
-            last = items.filter(':last');
+            upperList = $('.slider-list-g');
+            items = upperList.find('li');
+            lastUP = items.filter(':last');
 
-            trenutnaSlikaG = $(".slider-list-g .aktivan");
+            currentUP = $(".slider-list-g .aktivan");
 
-            last.addClass("aktivan");
-            trenutnaSlikaG.before(last.clone(true));
-            trenutnaSlikaG.removeClass();
+            lastUP.addClass("aktivan");
+            currentUP.before(lastUP.clone(true));
+            currentUP.removeClass();
 
 
-            s = last.width();
+            widthUP = lastUP.width();
 
-            gornjaLista.attr('style', 'right:' + (-s - 4) + "px");
+            upperList.attr('style', 'right:' + (-widthUP - 4) + "px");
 
-            last.remove();
+            lastUP.remove();
 
-            gornjaLista.animate({
-                right: "+=" + (s + 4)
+            upperList.animate({
+                right: "+=" + (widthUP + 4)
             }, 850);
 
         }
-        if (donjaLista.is(':not(:animated)')) {
+        if (lowerList.is(':not(:animated)')) {
 
-            donjaLista = $('.slider-list-d');
-            let stvari = donjaLista.find('li');
-            zadnji = stvari.filter(':last');
+            lowerList = $('.slider-list-d');
+            lowerList_Items = lowerList.find('li');
+            lastDOWN = lowerList_Items.filter(':last');
 
-            trenutnaSlikaD = $(".slider-list-d .aktivan");
+            currentDOWN = $(".slider-list-d .aktivan");
 
-            zadnji.addClass("aktivan");
-            trenutnaSlikaD.before(zadnji.clone(true));
-            trenutnaSlikaD.removeClass();
+            lastDOWN.addClass("aktivan");
+            currentDOWN.before(lastDOWN.clone(true));
+            currentDOWN.removeClass();
 
-            sirina = zadnji.width();
+            widthDOWN = lastDOWN.width();
 
-            donjaLista.attr('style', 'right:' + (-sirina - 4) + "px");
+            lowerList.attr('style', 'right:' + (-widthDOWN - 4) + "px");
 
-            zadnji.remove();
+            lastDOWN.remove();
 
-            donjaLista.animate({
-                right: "+=" + (sirina + 4)
+            lowerList.animate({
+                right: "+=" + (widthDOWN + 4)
             }, 850);
         }
 
